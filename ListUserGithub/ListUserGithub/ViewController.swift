@@ -210,7 +210,9 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         indexCur = getCurrentUserIndex(section: indexPath.section, row: indexPath.row)
-        self.present(UINavigationController(rootViewController: ViewControllerDetailUser()),animated: true, completion: nil)
+        let naviControler = UINavigationController(rootViewController: ViewControllerDetailUser())
+        navigationController?.modalPresentationStyle = .fullScreen
+        self.present(naviControler,animated: true)
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

@@ -31,15 +31,20 @@ class ViewControllerDetailUser: UIViewController {
         
     }
     func  setupView() {
-        self.navigationController!.navigationBar.barStyle = .black
-        self.navigationController?.navigationItem.backBarButtonItem = buttonReturn
-        //view.backgroundColor = UIColor(white: 0.4, alpha: 1)
-        view.layer.backgroundColor = UIColor.brown.cgColor
         
+        view.backgroundColor = UIColor.lightGray
+        
+        self.navigationController!.navigationBar.barStyle = .default
+        self.navigationController?.navigationBar.barTintColor = UIColor.darkGray
+        self.navigationController?.navigationBar.topItem?.title = "User"
+        self.navigationController?.navigationBar.titleTextAttributes = [
+            .foregroundColor: UIColor.white,
+            .font: UIFont(name: "HelveticaNeue-Medium", size: 20)!
+        ]
+
         view.addSubview(mainView)
         view.addSubview(nameView)
         
-        //self.navigationController?.navigationBar.addSubview(nameLable)
         nameView.addSubview(nameLable)
         mainView.addSubview(avatarUser)
         
@@ -91,10 +96,11 @@ class ViewControllerDetailUser: UIViewController {
     }()
     let avatarUser: UIImageView = {
         let av = UIImageView()
-        av.contentMode  = .scaleToFill
+        av.contentMode  = .scaleAspectFill
         av.layer.borderWidth = 3
         av.layer.borderColor = UIColor.black.cgColor
-        av.layer.cornerRadius = 10
+        av.layer.cornerRadius = 15
+        av.layer.masksToBounds = true
         return av
     }()
     let buttonReturn: UIBarButtonItem = {
@@ -102,9 +108,9 @@ class ViewControllerDetailUser: UIViewController {
         btn.title = "Return"
         btn.style = .plain
         btn.target = nil
-        btn.action = nil
-        btn.tintColor = UIColor.red
+        btn.action = nil//#selector(buttonTappedAction)
         return btn
     }()
+    
 }
 extension DetailUserGithub{}

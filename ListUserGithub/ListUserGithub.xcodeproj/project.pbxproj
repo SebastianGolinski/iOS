@@ -17,6 +17,7 @@
 		A54F75A22448AFDA009097CD /* ViewControllerDetilUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54F75A12448AFDA009097CD /* ViewControllerDetilUser.swift */; };
 		A5F56E55247696F3003DCC88 /* UserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F56E53247696F3003DCC88 /* UserRequest.swift */; };
 		A5F56E56247696F3003DCC88 /* UserGithub.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F56E54247696F3003DCC88 /* UserGithub.swift */; };
+		A5F56E592476C9E4003DCC88 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5F56E572476C6DC003DCC88 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		A54F75A12448AFDA009097CD /* ViewControllerDetilUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerDetilUser.swift; sourceTree = "<group>"; };
 		A5F56E53247696F3003DCC88 /* UserRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRequest.swift; sourceTree = "<group>"; };
 		A5F56E54247696F3003DCC88 /* UserGithub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserGithub.swift; sourceTree = "<group>"; };
+		A5F56E572476C6DC003DCC88 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 				A54F759F2448ADE1009097CD /* CustomCellUser.swift */,
 				A54BDBD12447337000B3743D /* LaunchScreen.storyboard */,
 				A54BDBDA244738A000B3743D /* Main.storyboard */,
+				A5F56E572476C6DC003DCC88 /* Assets.xcassets */,
 				A54BDBD42447337000B3743D /* Info.plist */,
 			);
 			path = ListUserGithub;
@@ -160,6 +163,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5F56E592476C9E4003DCC88 /* Assets.xcassets in Resources */,
 				A54BDBDB244738A000B3743D /* Main.storyboard in Resources */,
 				A54BDBD32447337000B3743D /* LaunchScreen.storyboard in Resources */,
 			);

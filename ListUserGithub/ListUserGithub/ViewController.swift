@@ -18,7 +18,6 @@ var searchUser = [DetailUserGithub]()
 
 class ViewController: UIViewController {
  
-
     let mainView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(white: 0.6 , alpha: 0.4)
@@ -50,6 +49,7 @@ class ViewController: UIViewController {
         sB.searchTextField.textColor = UIColor.black
         return sB
     }()
+    
     let tableUser: UITableView = {
         let tUser = UITableView()
         return tUser
@@ -68,9 +68,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-
         tableUser.backgroundColor = UIColor.clear
-
         searchBar.delegate = self
         let userRequest = UserRequset()
         userRequest.getUser { result in
@@ -82,11 +80,9 @@ class ViewController: UIViewController {
                 self.CreateSection()
             }
         }
-        
     }
     
     func CreateSection(){
-
         for user in userList{
             let key = String(user.login.prefix(1)).uppercased()
             if (userDictonary[key] != nil){
@@ -109,7 +105,6 @@ class ViewController: UIViewController {
         }else{
             allUserList = self.userList
         }
-        //CreateSection()
         tableUser.reloadData()
 
     }
@@ -117,7 +112,6 @@ class ViewController: UIViewController {
         view.addSubview(mainView)
         view.addSubview(naviView)
         naviView.addSubview(titleLable)
-        
         mainView.addSubview(searchBar)
         mainView.addSubview(tableUser)
         
@@ -169,7 +163,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
                 return userValue.count
             }
         }
-        
         return 0
     }
     
@@ -186,13 +179,10 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
         return cell
     }
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        
         if isSearching{
             return "Search User"
-            
         }else{
             return userSectionTitle[section]
-            
         }
     }
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -201,7 +191,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
             
         }else{
             return userSectionTitle.count
-            
         }
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

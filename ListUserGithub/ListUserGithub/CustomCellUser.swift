@@ -56,7 +56,6 @@ class CustomCell: UITableViewCell {
             make.bottom.equalTo(nameUser.snp_top)
             make.left.right.equalTo(boxCell)
         }
-        
     }
     
     required init?(coder: NSCoder) {

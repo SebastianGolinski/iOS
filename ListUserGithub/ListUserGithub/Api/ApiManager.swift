@@ -2,8 +2,8 @@
 import Combine
 import Alamofire
 
-struct UserRequset{
-    
+class ApiManager{
+    public static let sharedInstance = ApiManager()
     let resourceUrl: URL
     let API_KEY = "https://api.github.com/users"
     
@@ -19,13 +19,12 @@ struct UserRequset{
         completion(.success(users))
         }
     }
+
     func searchUsers(searchTextField: String, completion: @escaping(Result<[DetailUserGithub],UserGithubError>) -> Void ){
         AF.request(resourceUrl).validate().responseJSON { (response) in
             let users = try! JSONDecoder().decode([DetailUserGithub].self, from: response.data!)
             var results = users.filter{$0.login.replacingOccurrences(of: " ", with: "").lowercased().contains(searchTextField.replacingOccurrences(of: " ", with: "").lowercased())}
-            
             results = results.sorted(by:  {$0.login.lowercased() < $1.login.lowercased()})
-
             completion(.success(results))
         }
     }

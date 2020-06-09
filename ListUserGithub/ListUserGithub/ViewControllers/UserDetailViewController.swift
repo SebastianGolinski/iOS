@@ -3,7 +3,7 @@ import UIKit
 import SnapKit
 
 
-class ViewControllerDetailUser: UIViewController {
+class UserDetailViewController: UIViewController {
     static var detialUser = "DetailUser"
     public var userLogin: String = ""
     public var userAvatar: String = ""
@@ -15,6 +15,7 @@ class ViewControllerDetailUser: UIViewController {
         guard let resourceUrl = URL(string: userAvatar) else {fatalError()}
         setImage(resourceUrl, placeImage: avatarUser)
     }
+    
     func setImage(_ photoURL: URL?, placeImage: UIImageView?){
         guard let imageURL = photoURL else { return  }
         DispatchQueue.global(qos: .userInitiated).async {
@@ -28,8 +29,8 @@ class ViewControllerDetailUser: UIViewController {
                 print("Unable to load data: \(error)")
             }
         }
-        
     }
+
     func  setupView() {
         view.backgroundColor = UIColor.lightGray
         self.navigationController!.navigationBar.barStyle = .default

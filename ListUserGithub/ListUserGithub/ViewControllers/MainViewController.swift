@@ -1,13 +1,9 @@
 import UIKit
 import SnapKit
 
-
-class ViewController: UIViewController {
- 
+class MainViewController: UIViewController {
     var isSearching = false
-    var userSectionTitle = [String]()
-    var userDictonary = [String: [DetailUserGithub]]()
-    var searchUser = [DetailUserGithub]()
+    let dataSource = UserDataSource()
 
     let mainView: UIView = {
         let view = UIView()
@@ -45,52 +41,34 @@ class ViewController: UIViewController {
         return tUser
     }()
     
-    var userList = [DetailUserGithub](){
-        didSet{
-            DispatchQueue.main.async {
-                self.userList = self.userList.sorted(by:  {$0.login.lowercased() < $1.login.lowercased()})
-                self.tableUser.reloadData()
-            }
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         tableUser.backgroundColor = UIColor.clear
         searchBar.delegate = self
-        UserRequset().getUsers { result in
+        dataSource.delgate = self
+        ApiManager.sharedInstance.getUsers { result in
             switch result{
             case .failure(let error):
                 print("load list: ",  error)
             case .success(let user):
-                self.userList = user
-                self.createSection()
+                self.dataSource.userList = user
+                self.dataSource.createSection()
+                self.tableUser.reloadData()
             }
         }
     }
+
     override func viewDidAppear(_ animated: Bool) {
-        UserRequset().getUsers { result in
+        ApiManager.sharedInstance.getUsers { result in
             switch result{
             case .failure(let error):
                 print("load list: ",  error)
             case .success(let user):
-                self.userList = user
+                self.dataSource.userList = user
+                self.tableUser.reloadData()
             }
         }
-    }
-    
-    func createSection(){
-        for user in userList{
-            let key = String(user.login.prefix(1)).uppercased()
-            if (userDictonary[key] != nil){
-                userDictonary[key]?.append(user )
-            }else{
-                userDictonary[key] = [user]
-            }
-        }
-        userSectionTitle = [String](userDictonary.keys)
-        userSectionTitle = userSectionTitle.sorted(by: {$0.uppercased() < $1.uppercased()})
     }
 
     func  setupView() {
@@ -120,15 +98,63 @@ class ViewController: UIViewController {
             make.top.equalTo(mainView.snp_top).offset(5)
             make.width.equalTo(mainView)
         }
-        tableUser.delegate = self
-        tableUser.dataSource = self
-        tableUser.register(CustomCell.self, forCellReuseIdentifier: CustomCell.customCell)
+
+        tableUser.delegate = dataSource
+        tableUser.dataSource = dataSource
+        tableUser.register(UserTableViewCell.self, forCellReuseIdentifier: UserTableViewCell.identifier)
         tableUser.snp.makeConstraints{(make) in
             make.top.equalTo(searchBar.snp_bottom).offset(5)
             make.bottom.equalTo(mainView).offset(-5)
             make.left.equalTo(mainView).offset(0)
             make.right.equalTo(mainView).offset(0)
-
         }
+    }
+}
+
+extension MainViewController: UserDataSourceDelagate{
+    func didSelect(_ user: DetailUserGithub) {
+        let vCdetailUser = UserDetailViewController()
+        vCdetailUser.userLogin = user.login
+        vCdetailUser.userAvatar = user.avatar_url
+        let naviControler = UINavigationController(rootViewController: vCdetailUser)
+        navigationController?.modalPresentationStyle = .fullScreen
+        self.present(naviControler,animated: true)
+    }
+}
+
+extension MainViewController: UISearchBarDelegate{
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text != nil && searchBar.text != "" {
+            ApiManager.sharedInstance.searchUsers(searchTextField: searchBar.text!) { result in
+                switch result{
+                case .failure(let error):
+                    print("search list: ",  error)
+                case .success(let user):
+                    self.dataSource.searchUser = user
+                    self.dataSource.isSearching = true
+                    self.tableUser.reloadData()
+                }
+            }
+        }else{
+            dataSource.isSearching = false
+            tableUser.reloadData()
+        }
+    }
+
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
+    }
+
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(true, animated: true)
+    }
+
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(false, animated: true)
+        searchBar.endEditing(true)
+        searchBar.text = ""
+        dataSource.isSearching = false
+        self.dataSource.searchUser.removeAll()
+        tableUser.reloadData()
     }
 }

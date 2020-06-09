@@ -1,12 +1,11 @@
 import SnapKit
 import UIKit
 
-class CustomCell: UITableViewCell {
-    static var customCell = "cellUser"
+class UserTableViewCell: UITableViewCell {
+    static var identifier = "UserTableViewCell"
     
     let nameUser: UILabel = {
         let name = UILabel()
-        name.text = "test"
         name.font = UIFont(name: "HelveticaNeue-Medium", size: 20)
         name.textColor = UIColor.black
         return name

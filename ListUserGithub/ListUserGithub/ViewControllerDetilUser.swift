@@ -5,11 +5,14 @@ import SnapKit
 
 class ViewControllerDetailUser: UIViewController {
     static var detialUser = "DetailUser"
+    public var userLogin: String = ""
+    public var userAvatar: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        nameLable.text = allUserList[indexCur].login
-        guard let resourceUrl = URL(string: allUserList[indexCur].avatar_url) else {fatalError()}
+        nameLable.text = userLogin
+        guard let resourceUrl = URL(string: userAvatar) else {fatalError()}
         setImage(resourceUrl, placeImage: avatarUser)
     }
     func setImage(_ photoURL: URL?, placeImage: UIImageView?){
@@ -41,25 +44,21 @@ class ViewControllerDetailUser: UIViewController {
         view.addSubview(nameView)
         nameView.addSubview(nameLable)
         mainView.addSubview(avatarUser)
-        
         mainView.snp.makeConstraints{(make) in
             make.top.equalTo(nameView.snp_bottom).offset(10)
             make.bottom.equalTo(view.safeAreaLayoutGuide)
             make.left.equalTo(10)
             make.right.equalTo(-10)
         }
-        
         nameView.snp.makeConstraints{(make) in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(10)
             make.height.equalTo(60)
             make.left.equalTo(30)
             make.right.equalTo(-30)
         }
-        
         nameLable.snp.makeConstraints{(make) in
             make.center.equalTo(nameView)
         }
-        
         avatarUser.snp.makeConstraints { (make) in
             make.left.equalTo(mainView).offset(20)
             make.right.equalTo(mainView).offset(-20)

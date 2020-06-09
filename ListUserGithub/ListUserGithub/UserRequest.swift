@@ -1,7 +1,6 @@
 
 import Combine
 import Alamofire
-import SwiftyJSON
 
 struct UserRequset{
     
@@ -13,15 +12,21 @@ struct UserRequset{
         self.resourceUrl = resourceUrl
     }
     
-    func getUser (completion: @escaping(Result<[DetailUserGithub],UserGithubError>) -> Void ){
-        AF.request(resourceUrl).validate().responseJSON { (data) in
-        let json = try! JSON(data: data.data!)
-        var listU: [DetailUserGithub] = []
-        for i in json{
-            //DetailUserGithub.app
-            listU.append(DetailUserGithub(login: i.1["login"].stringValue, avatar_url: i.1["avatar_url"].stringValue))
+    func getUsers (completion: @escaping(Result<[DetailUserGithub],UserGithubError>) -> Void ){
+        AF.request(resourceUrl).validate().responseJSON { (response) in
+            let users = try! JSONDecoder().decode([DetailUserGithub].self, from: response.data!)
+            
+        completion(.success(users))
         }
-        completion(.success(listU))
+    }
+    func searchUsers(searchTextField: String, completion: @escaping(Result<[DetailUserGithub],UserGithubError>) -> Void ){
+        AF.request(resourceUrl).validate().responseJSON { (response) in
+            let users = try! JSONDecoder().decode([DetailUserGithub].self, from: response.data!)
+            var results = users.filter{$0.login.replacingOccurrences(of: " ", with: "").lowercased().contains(searchTextField.replacingOccurrences(of: " ", with: "").lowercased())}
+            
+            results = results.sorted(by:  {$0.login.lowercased() < $1.login.lowercased()})
+
+            completion(.success(results))
         }
     }
 }

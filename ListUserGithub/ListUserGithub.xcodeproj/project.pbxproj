@@ -18,6 +18,8 @@
 		A5F56E55247696F3003DCC88 /* UserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F56E53247696F3003DCC88 /* UserRequest.swift */; };
 		A5F56E56247696F3003DCC88 /* UserGithub.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F56E54247696F3003DCC88 /* UserGithub.swift */; };
 		A5F56E592476C9E4003DCC88 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5F56E572476C6DC003DCC88 /* Assets.xcassets */; };
+		A5FCAB08248FAA1B003436CD /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FCAB07248FAA1B003436CD /* TableViewController.swift */; };
+		A5FCAB0A248FABA9003436CD /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FCAB09248FABA9003436CD /* SearchController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		A5F56E53247696F3003DCC88 /* UserRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRequest.swift; sourceTree = "<group>"; };
 		A5F56E54247696F3003DCC88 /* UserGithub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserGithub.swift; sourceTree = "<group>"; };
 		A5F56E572476C6DC003DCC88 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A5FCAB07248FAA1B003436CD /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		A5FCAB09248FABA9003436CD /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,8 +88,10 @@
 				A5F56E54247696F3003DCC88 /* UserGithub.swift */,
 				A5F56E53247696F3003DCC88 /* UserRequest.swift */,
 				A54F75A12448AFDA009097CD /* ViewControllerDetilUser.swift */,
+				A5FCAB07248FAA1B003436CD /* TableViewController.swift */,
 				A54BDBCA2447336F00B3743D /* ViewController.swift */,
 				A54F759F2448ADE1009097CD /* CustomCellUser.swift */,
+				A5FCAB09248FABA9003436CD /* SearchController.swift */,
 				A54BDBD12447337000B3743D /* LaunchScreen.storyboard */,
 				A54BDBDA244738A000B3743D /* Main.storyboard */,
 				A5F56E572476C6DC003DCC88 /* Assets.xcassets */,
@@ -221,9 +227,11 @@
 				A54BDBCB2447336F00B3743D /* ViewController.swift in Sources */,
 				A54F75A22448AFDA009097CD /* ViewControllerDetilUser.swift in Sources */,
 				A54F75A02448ADE1009097CD /* CustomCellUser.swift in Sources */,
+				A5FCAB08248FAA1B003436CD /* TableViewController.swift in Sources */,
 				A5F56E55247696F3003DCC88 /* UserRequest.swift in Sources */,
 				A5F56E56247696F3003DCC88 /* UserGithub.swift in Sources */,
 				A54BDBC72447336F00B3743D /* AppDelegate.swift in Sources */,
+				A5FCAB0A248FABA9003436CD /* SearchController.swift in Sources */,
 				A54BDBC92447336F00B3743D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

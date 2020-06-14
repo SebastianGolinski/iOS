@@ -84,15 +84,18 @@ class MainViewController: UIViewController {
             make.left.equalTo(10)
             make.right.equalTo(-10)
         }
+        
         naviView.snp.makeConstraints{(make) in
             make.top.equalTo(view.safeAreaLayoutGuide)
             make.height.equalTo(60)
             make.left.equalTo(30)
             make.right.equalTo(-30)
         }
+        
         titleLable.snp.makeConstraints{(make) in
             make.center.equalTo(naviView)
         }
+        
         searchBar.snp.makeConstraints{(make) in
             make.height.equalTo(50)
             make.top.equalTo(mainView.snp_top).offset(5)
@@ -102,6 +105,7 @@ class MainViewController: UIViewController {
         tableUser.delegate = dataSource
         tableUser.dataSource = dataSource
         tableUser.register(UserTableViewCell.self, forCellReuseIdentifier: UserTableViewCell.identifier)
+        
         tableUser.snp.makeConstraints{(make) in
             make.top.equalTo(searchBar.snp_bottom).offset(5)
             make.bottom.equalTo(mainView).offset(-5)

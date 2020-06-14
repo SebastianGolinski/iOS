@@ -63,6 +63,7 @@ class UserDataSource: NSObject, UITableViewDelegate, UITableViewDataSource{
             return userSectionTitle[section]
         }
     }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         if isSearching{
             return 1

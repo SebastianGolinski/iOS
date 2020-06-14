@@ -1,7 +1,5 @@
-
 import UIKit
 import SnapKit
-
 
 class UserDetailViewController: UIViewController {
     static var detialUser = "DetailUser"
@@ -45,21 +43,25 @@ class UserDetailViewController: UIViewController {
         view.addSubview(nameView)
         nameView.addSubview(nameLable)
         mainView.addSubview(avatarUser)
+        
         mainView.snp.makeConstraints{(make) in
             make.top.equalTo(nameView.snp_bottom).offset(10)
             make.bottom.equalTo(view.safeAreaLayoutGuide)
             make.left.equalTo(10)
             make.right.equalTo(-10)
         }
+        
         nameView.snp.makeConstraints{(make) in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(10)
             make.height.equalTo(60)
             make.left.equalTo(30)
             make.right.equalTo(-30)
         }
+        
         nameLable.snp.makeConstraints{(make) in
             make.center.equalTo(nameView)
         }
+        
         avatarUser.snp.makeConstraints { (make) in
             make.left.equalTo(mainView).offset(20)
             make.right.equalTo(mainView).offset(-20)

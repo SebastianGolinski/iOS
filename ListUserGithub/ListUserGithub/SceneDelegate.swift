@@ -1,11 +1,3 @@
-//
-//  SceneDelegate.swift
-//  ListUserGithub
-//
-//  Created by Sebastian Golinski on 15/04/2020.
-//  Copyright © 2020 Sebastian Golinski. All rights reserved.
-//
-
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {

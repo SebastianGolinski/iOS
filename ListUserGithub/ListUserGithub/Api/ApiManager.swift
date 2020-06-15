@@ -14,17 +14,21 @@ class ApiManager{
     func getUsers (completion: @escaping(Result<[DetailUserGithub],UserGithubError>) -> Void ){
         AF.request(resourceUrl).validate().responseJSON { (response) in
             let users = try! JSONDecoder().decode([DetailUserGithub].self, from: response.data!)
-            
-        completion(.success(users))
+            completion(.success(users))
         }
     }
 
     func searchUsers(searchTextField: String, completion: @escaping(Result<[DetailUserGithub],UserGithubError>) -> Void ){
-        AF.request(resourceUrl).validate().responseJSON { (response) in
-            let users = try! JSONDecoder().decode([DetailUserGithub].self, from: response.data!)
-            var results = users.filter{$0.login.replacingOccurrences(of: " ", with: "").lowercased().contains(searchTextField.replacingOccurrences(of: " ", with: "").lowercased())}
-            results = results.sorted(by:  {$0.login.lowercased() < $1.login.lowercased()})
-            completion(.success(results))
+        guard let url = URL(string: "https://api.github.com/search/users?q=\(searchTextField)")else {fatalError()}
+        AF.request(url).validate().responseJSON { (response) in
+            do{
+                let users = try JSONDecoder().decode(SearchUserGitHub.self, from: response.data!)
+                var results = users.items
+                results = results.sorted(by:  {$0.login.lowercased() < $1.login.lowercased()})
+                completion(.success(results))
+            }catch let error{
+                print(error)
+            }
         }
     }
 }

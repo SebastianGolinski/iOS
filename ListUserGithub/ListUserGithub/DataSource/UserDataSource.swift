@@ -75,7 +75,11 @@ class UserDataSource: NSObject, UITableViewDelegate, UITableViewDataSource{
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let indexCur = getCurrentUserIndex(section: indexPath.section, row: indexPath.row)
-        delgate?.didSelect(userList[indexCur])
+        if isSearching{
+            delgate?.didSelect(searchUser[indexPath.row])
+        }else{
+            delgate?.didSelect(userList[indexCur])
+        }
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

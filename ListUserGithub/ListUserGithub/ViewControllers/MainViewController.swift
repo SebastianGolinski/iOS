@@ -128,7 +128,7 @@ extension MainViewController: UserDataSourceDelagate{
 
 extension MainViewController: UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchBar.text != nil && searchBar.text != "" {
+        if searchBar.text != nil && searchBar.text != "" && !isSearching{
             ApiManager.sharedInstance.searchUsers(searchTextField: searchBar.text!) { result in
                 switch result{
                 case .failure(let error):
@@ -142,7 +142,7 @@ extension MainViewController: UISearchBarDelegate{
         }else{
             dataSource.isSearching = false
             tableUser.reloadData()
-        }
+            }
     }
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {

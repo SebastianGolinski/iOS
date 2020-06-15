@@ -2,7 +2,10 @@
 import Foundation
 
 class DetailUserGithub: Decodable{
-    let login: String
-    let avatar_url: String
+    var login: String
+    var avatar_url: String
+}
+class SearchUserGitHub: Decodable {
+    var items: [DetailUserGithub]
 }
 
